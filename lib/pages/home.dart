@@ -24,18 +24,18 @@ class NestedScrollViewExample extends StatelessWidget {
     );
   }
 
+
   @override
   Widget build(BuildContext context) {
     final List<String> tabs = <String>['Seccion 1', 'Seccion 2'];
-    final List<String> names = <String>['Item 1', 'Item 2', 'Item 3'];
-
+    
     return DefaultTabController(
       length: tabs.length,
       child: Scaffold(
         body: NestedScrollView(
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
-              SliverAppBar(
+              SliverAppBar( 
                 title: const Text(' Evaluación III'),
                 pinned: true,
                 expandedHeight: 150.0,
