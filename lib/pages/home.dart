@@ -26,7 +26,7 @@ class NestedScrollViewExample extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> tabs = <String>['Tab 1', 'Tab 2'];
+    final List<String> tabs = <String>['Tab 1', 'Tab 2', 'Tab 3'];
 
     return DefaultTabController(
       length: tabs.length,
@@ -35,7 +35,7 @@ class NestedScrollViewExample extends StatelessWidget {
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
               SliverAppBar(
-                title: const Text(''),
+                title: const Text('Nested Scroll View Example'),
                 pinned: true,
                 expandedHeight: 150.0,
                 forceElevated: innerBoxIsScrolled,
@@ -61,28 +61,38 @@ class NestedScrollViewExample extends StatelessWidget {
                     return NotificationListener<ScrollEndNotification>(
                       onNotification: (notification) {
                         if (notification.metrics.extentAfter == 0) {
-                          showNotification(context, 'Has llegado al final de la lista');
+                          // Simulación de carga de más elementos en la lista
+                          Future.delayed(Duration(seconds: 1), () {
+                            showNotification(context, 'Cargando más elementos...');
+                          });
                         }
                         return true; // Necesario para recibir notificaciones
                       },
-                      child: CustomScrollView(
-                        key: PageStorageKey<String>(name),
-                        slivers: <Widget>[
-                          SliverPadding(
-                            padding: const EdgeInsets.all(8.0),
-                            sliver: SliverFixedExtentList(
-                              itemExtent: 48.0,
-                              delegate: SliverChildBuilderDelegate(
-                                (BuildContext context, int index) {
-                                  return ListTile(
-                                    title: Text('Ejemplo $index'),
-                                  );
-                                },
-                                childCount: 31,
+                      child: Center(
+                        child: CustomScrollView(
+                          key: PageStorageKey<String>(name),
+                          slivers: <Widget>[
+                            SliverPadding(
+                              padding: const EdgeInsets.all(8.0),
+                              sliver: SliverFixedExtentList(
+                                itemExtent: 72.0,
+                                delegate: SliverChildBuilderDelegate(
+                                  (BuildContext context, int index) {
+                                    return ListTile(
+                                      title: Text('Elemento $index en $name'),
+                                      subtitle: Text('Descripción del elemento $index'),
+                                      leading: Icon(Icons.star),
+                                      onTap: () {
+                                        showNotification(context, 'Tocaste el elemento $index en $name');
+                                      },
+                                    );
+                                  },
+                                  childCount: 20, // Cambia la cantidad de elementos en cada lista
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     );
                   },
