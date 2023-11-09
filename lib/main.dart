@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 
 
 
+
+
 void main() {
   runApp( MyApp());
 
@@ -15,6 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      home:UserProfile(),
       debugShowCheckedModeBanner: false,
       title: 'Evaluación lll',
       theme: ThemeData(
@@ -22,7 +25,6 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:  Home(),
     );
   }
 }

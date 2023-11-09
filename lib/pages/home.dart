@@ -21,6 +21,15 @@ class UserProfile extends StatefulWidget {
 class _UserProfileState extends State<UserProfile> {
   double appBarOpacity = 1.0;
 
+  List<String> nombres = [
+    'Tania Juárez',
+    'Ejemplo 1',
+    'Ejemplo 2',
+    'Ejemplo 3',
+    'Ejemplo 4',
+    // Agrega más nombres según sea necesario
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +41,7 @@ class _UserProfileState extends State<UserProfile> {
               floating: false,
               pinned: true,
               flexibleSpace: FlexibleSpaceBar(
-                title: Text('Tania Juárez'),
+                title: Text(nombres[0]), // Cambia el nombre aquí
                 background: Image.asset(
                   'images/img.jpg',
                   fit: BoxFit.cover,
@@ -50,16 +59,16 @@ class _UserProfileState extends State<UserProfile> {
             return false;
           },
           child: ListView.builder(
-            itemCount: 20,
+            itemCount: nombres.length, // Usar la longitud de la lista de nombres
             itemBuilder: (context, index) {
               return ListTile(
                 title: Align(
                   alignment: Alignment.center,
-                  child: Text('Publicación $index', style: TextStyle(fontSize: 16.0)),
+                  child: Text(nombres[index], style: TextStyle(fontSize: 16.0)),
                 ),
                 subtitle: Align(
                   alignment: Alignment.center,
-                  child: Text('Descripción de la publicación $index', style: TextStyle(fontSize: 14.0)),
+                  child: Text('Descripción de ${nombres[index]}', style: TextStyle(fontSize: 14.0)),
                 ),
               );
             },
