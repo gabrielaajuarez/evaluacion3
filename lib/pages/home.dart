@@ -26,7 +26,8 @@ class NestedScrollViewExample extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> tabs = <String>['Tab 1', 'Tab 2', 'Tab 3'];
+    final List<String> tabs = <String>['Seccion 1', 'Seccion 2'];
+    final List<String> names = <String>['Item 1', 'Item 2', 'Item 3'];
 
     return DefaultTabController(
       length: tabs.length,
@@ -35,7 +36,7 @@ class NestedScrollViewExample extends StatelessWidget {
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
               SliverAppBar(
-                title: const Text('Nested Scroll View Example'),
+                title: const Text(' Evaluación III'),
                 pinned: true,
                 expandedHeight: 150.0,
                 forceElevated: innerBoxIsScrolled,
@@ -44,7 +45,7 @@ class NestedScrollViewExample extends StatelessWidget {
                 ),
                 flexibleSpace: FlexibleSpaceBar(
                   background: Image.asset(
-                    'images/img1.jpg', // Reemplaza con la ruta de tu imagen
+                    'images/img1.jpg', // imagen
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -79,11 +80,11 @@ class NestedScrollViewExample extends StatelessWidget {
                                 delegate: SliverChildBuilderDelegate(
                                   (BuildContext context, int index) {
                                     return ListTile(
-                                      title: Text('Elemento $index en $name'),
-                                      subtitle: Text('Descripción del elemento $index'),
-                                      leading: Icon(Icons.star),
+                                      title: Text('Ejemplo $index: en la $name'),
+                                      subtitle: Text(' '),
+                                      leading: Icon(Icons.star_border_purple500),
                                       onTap: () {
-                                        showNotification(context, 'Tocaste el elemento $index en $name');
+                                        showNotification(context, 'Seleccionaste ejemplo $index en la $name');
                                       },
                                     );
                                   },
